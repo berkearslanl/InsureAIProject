@@ -1,0 +1,42 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Kullanıcı Listesi</h5>
+        </div>
+        <div class="table-responsive mt-3">
+            <table class="table align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>Profil</th>
+                        <th>Yorumlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model)
+                    {
+                        <tr>
+                            <th>@x.Name @x.Surname</th>
+                            <td>
+                                <div class="table-actions d-flex align-items-center gap-3 fs-6">
+                                    <a href="/AppUser/UserProfileWithAI/@x.Id" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profil"><i class="bi bi-pencil-fill"></i></a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="table-actions d-flex align-items-center gap-3 fs-6">
+                                    <a href="/AppUser/UserCommentsProfileWithAI/@x.Id" class="text-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Yorumlar"><i class="bi bi-chat-dots"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

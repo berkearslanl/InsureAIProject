@@ -1,0 +1,38 @@
+﻿@model List<AboutItem>
+<section class="about-area about-p pt-120 pb-120 p-relative fix" id="about">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="s-about-img p-relative" data-aos="fade-up" data-aos-duration="1000">
+                    <img src="@ViewBag.imageurl" alt="img">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="about-content s-about-content">
+                    <div class="about-title second-title pb-25">
+                        <h2 data-aos="fade-up" data-aos-duration="1000">@ViewBag.title</h2>
+                    </div>
+                    <p data-aos="fade-up" data-aos-duration="1000">@ViewBag.description</p>
+
+                    <div class="about-content3 mt-30" data-aos="fade-up" data-aos-duration="1200">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="green">
+                                    @foreach (var x in Model)
+                                    {
+                                        <li> @x.Detail</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

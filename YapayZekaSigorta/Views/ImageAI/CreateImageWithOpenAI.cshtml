@@ -1,0 +1,57 @@
+﻿@model string
+@{
+    ViewData["Title"] = "CreateImageWithOpenAI";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+
+        <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-image fs-4 text-primary me-2"></i>
+            <h5 class="mb-0 fw-semibold">OpenAI ile Görsel Oluşturma</h5>
+        </div>
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Prompt Girişi
+                </label>
+                <textarea name="prompt"
+                          class="form-control"
+                          rows="4"
+                          placeholder="Örn: A realistic travel photography style image of a family traveling abroad..."
+                          required></textarea>
+                <small class="text-muted">
+                    Ne kadar detay, o kadar iyi sonuç. Gerçekçi görünüm için açıklayıcı olun.
+                </small>
+            </div>
+
+            <button type="submit" class="btn btn-primary px-4">
+                <i class="bi bi-magic me-1"></i>
+                Görsel Oluştur
+            </button>
+        </form>
+
+        @if (ViewBag.error != null)
+        {
+            <div class="alert alert-danger mt-4 mb-0">
+                <strong>Hata:</strong> @ViewBag.error
+            </div>
+        }
+
+        @if (Model != null)
+        {
+            <hr class="my-4" />
+
+            <h6 class="fw-semibold mb-3">Oluşturulan Görsel</h6>
+
+            <div class="text-center">
+                <img src="@Model"
+                     alt="OpenAI Görseli"
+                     class="img-fluid rounded shadow"
+                     style="max-width: 512px;" />
+            </div>
+        }
+    </div>
+</div>

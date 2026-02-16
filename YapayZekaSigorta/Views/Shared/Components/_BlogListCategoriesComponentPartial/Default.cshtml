@@ -1,0 +1,76 @@
+﻿@model List<CategoryArticleCountViewModel>
+<style>
+    /* Başlık Stili (Etiketlerle uyumlu olması için) */
+    .widget_categories .widget-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-left: 12px;
+        border-left: 4px solid #0056b3;
+        color: #333;
+    }
+
+    /* Liste Genel Ayarları */
+    .widget_categories ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Her Bir Satır */
+    .widget_categories li.cat-item {
+        margin-bottom: 8px; /* Satırlar arası boşluk */
+    }
+
+        /* Link Yapısı (Flexbox ile hizalama) */
+        .widget_categories li.cat-item a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #ffffff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            color: #444;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+    /* Kategori Sayısı (Badge/Rozet) Stili */
+    .widget_categories .cat-count {
+        background-color: #f0f2f5;
+        color: #666;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    /* Hover (Üzerine Gelince) Efektleri */
+    .widget_categories li.cat-item a:hover {
+        background-color: #f8fbff; /* Çok hafif mavi tonu */
+        border-color: #0056b3;
+        color: #0056b3;
+        padding-left: 20px; /* Sağa doğru hafif kayma efekti */
+    }
+
+        .widget_categories li.cat-item a:hover .cat-count {
+            background-color: #0056b3;
+            color: #fff;
+        }
+</style>
+<section id="categories-1" class="widget widget_categories">
+    <h2 class="widget-title">Kategoriler</h2>
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li class="cat-item">
+                <a href="/Blog/GetBlogByCategory/@x.CategoryId">
+                    <span class="cat-name">@x.CategoryName</span>
+                    <span class="cat-count">@x.ArticleCount</span>
+                </a>
+            </li>
+        }
+    </ul>
+</section>

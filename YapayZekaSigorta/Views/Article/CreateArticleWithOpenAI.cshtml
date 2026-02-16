@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "AI Makale Oluşturucu";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-10 mx-auto">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white py-3">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0 fw-bold"><i class="bi bi-robot me-2 text-primary"></i>Open AI ile Makale Oluşturma</h5>
+                        <small class="text-muted">Anahtar kelimelerinizi girin, gerisini yapay zekaya bırakın.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <form method="post" id="aiForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Makale Özeti ve Anahtar Kelimeler</label>
+                        <textarea class="form-control" name="prompt" rows="4"
+                                  placeholder="Örn: 'Yurt dışı seyahat sigortasının avantajları ve Schengen vizesi gereksinimleri hakkında bir blog yazısı yaz.'"
+                                  required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary px-4 py-2 d-flex align-items-center" id="btnSubmit">
+                        <span id="btnText">AI ile Makale Oluştur</span>
+                        <div id="btnSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></div>
+                    </button>
+                </form>
+
+                @if (ViewBag.article != null)
+                {
+                    <div class="mt-5" id="resultArea">
+                        <hr class="my-4" />
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Oluşturulan AI Makalesi</h5>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard()">
+                                <i class="bi bi-clipboard me-1"></i> Metni Kopyala
+                            </button>
+                        </div>
+
+                        <div class="p-4 rounded-3 bg-light border" id="articleContent" style="line-height: 1.8; font-size: 1.05rem;">
+                            @Html.Raw(ViewBag.article.ToString()))
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Form gönderildiğinde butonu loading durumuna sokar
+    document.getElementById('aiForm').onsubmit = function() {
+        const btn = document.getElementById('btnSubmit');
+        const spinner = document.getElementById('btnSpinner');
+        const text = document.getElementById('btnText');
+
+        btn.disabled = true;
+        spinner.classList.remove('d-none');
+        text.innerText = "Yapay Zeka Yazıyor...";
+    };
+
+    // Oluşturulan metni kopyalama fonksiyonu
+    function copyToClipboard() {
+        const content = document.getElementById('articleContent').innerText;
+        navigator.clipboard.writeText(content).then(() => {
+            alert("Makale kopyalandı!");
+        });
+    }
+</script>
+
+
+
+
+
+
+@* @{
+    ViewData["Title"] = "CreateArticleWithOpenAI";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Open AI ile Yapay Zeka Destekli Makale Oluşturma</h5>
+        </div>
+        <form method="post">
+            <br>
+            <label class="form-label">Makale İçeriği Özeti ve Anahtar Kelimeler</label>
+            <br />
+            <input type="text" class="form-control" name="prompt" /> @* name kısmı httppost'taki parametre ile aynı olmalı 
+            <br />
+            <button class="btn btn-outline-primary">AI ile Makale Oluştur</button>
+        </form>
+        <br /><br />
+        @if (ViewBag.article != null)
+        {
+            <hr />
+            <h5>Oluşturulan AI Makalesi:</h5>
+            <div class="alert alert-succcess">
+                @Html.Raw(ViewBag.article.ToString())
+            </div>
+        }
+    </div>
+</div>
+
+ *@

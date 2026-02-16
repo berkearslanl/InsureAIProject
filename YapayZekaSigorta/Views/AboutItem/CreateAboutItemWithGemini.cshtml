@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["Title"] = "CreateAboutItemWithGemini";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="container-fluid px-4">
+    <div class="row mt-4">
+        <div class="col-xl-9 mx-auto">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="bi bi-list-check me-2 text-warning"></i>AI Destekli Hakkımızda Maddeleri
+                    </h5>
+                    <span class="badge bg-primary">@ViewBag.model</span>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="alert alert-light border-start border-4 border-primary shadow-sm mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-magic fs-4 me-3 text-primary"></i>
+                            <div>
+                                <strong>İçerik Önerileri Hazır!</strong><br>
+                                Aşağıdaki 10 madde, kurumsal kimliğinizi güçlendirmek için yapay zeka tarafından özel olarak seçildi.
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (ViewBag.abouttext != null)
+                    {
+                        <div class="list-group list-group-flush border rounded-3 overflow-hidden shadow-sm" id="itemContainer">
+                            @* Gemini'den gelen metni parçalayıp liste öğelerine çeviriyoruz *@
+                            @{
+                                var rawContent = ViewBag.abouttext.ToString();
+                                // Metni satır satır bölüyoruz (Gemini genellikle maddeleri alt alta verir)
+                                var items = rawContent.Split(new[] { "\n", "<br/>", "<br>" }, StringSplitOptions.RemoveEmptyEntries);
+                            }
+
+                            @foreach (var item in items)
+                            {
+                                <div class="list-group-item list-group-item-action p-3 d-flex align-items-start">
+                                    <i class="bi bi-patch-check-fill text-success me-3 mt-1"></i>
+                                    <div class="content-text">
+                                        @Html.Raw(item)
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between align-items-center">
+                            <p class="text-muted small mb-0 mt-2">* Maddeleri kopyalayıp web sitenizin ilgili alanlarına yapıştırabilirsiniz.</p>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-dark" onclick="copyAllItems()">
+                                    <i class="bi bi-clipboard-data"></i> Tümünü Kopyala
+                                </button>
+                                <a href="@Url.Action("CreateAboutItemWithGemini")" class="btn btn-primary">
+                                    <i class="bi bi-arrow-repeat"></i> Yeni Öneriler Getir
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <div class="spinner-grow text-primary" role="status"></div>
+                            <h6 class="mt-3 text-secondary">Yapay Zeka maddeleri analiz ediyor...</h6>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .list-group-item-action:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+        transition: all 0.2s ease;
+        z-index: 1;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .content-text b, .content-text strong {
+        color: #0d6efd;
+    }
+</style>
+
+<script>
+    function copyAllItems() {
+        const container = document.getElementById('itemContainer');
+        const text = container.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Tüm maddeler panoya kopyalandı!");
+        });
+    }
+</script>

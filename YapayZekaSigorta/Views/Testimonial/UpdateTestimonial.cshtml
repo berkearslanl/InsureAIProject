@@ -1,0 +1,35 @@
+﻿@model Testimonial
+@{
+    ViewData["Title"] = "UpdateTestimonial";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Yeni Sigorta Yorumu Girişi</h5>
+        </div>
+        <form method="post">
+            <input type="hidden" asp-for="TestimonialId" />
+            <br>
+            <label class="form-label">Ad Soyad</label>
+            <br />
+            <input type="text" class="form-control" asp-for="NameSurname" />
+            <br />
+            <label class="form-label">Unvan</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Title" />
+            <br />
+            <label class="form-label">Yorum</label>
+            <br />
+            <input type="text" class="form-control" asp-for="CommentDetail" />
+            <br />
+            <label class="form-label">Görsel Url</label>
+            <br />
+            <input type="text" class="form-control" asp-for="ImageUrl" />
+            <br />
+            <button class="btn btn-outline-primary">Kategoriyi Ekle</button>
+        </form>
+    </div>
+</div>
+

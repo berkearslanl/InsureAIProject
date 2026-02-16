@@ -1,0 +1,49 @@
+﻿@model List<Service>
+
+<section id="services-05" class="services-05 services-09 pt-240 pb-100 p-relative fix" style=" background-color: #28314b;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 col-md-12">
+                <div class="section-title center-align mb-50 text-center" data-aos="fade-up" data-aos-duration="1000">
+                    <h2>
+                        Sunmuş Olduğumuz Sigorta Hizmetleri
+                    </h2>
+
+                </div>
+
+            </div>
+            <div class="col-lg-12">
+                <div class="services-active" data-aos="fade-up" data-aos-duration="1000">
+                    @foreach (var x in Model)
+                    {
+                        <div class="services-box-02">
+                            <div class="services-img" style="opacity:0.7">
+                                <img src="@x.ImageUrl" alt="icon01">
+                                <div class="services-content2" >
+                                    <div class="icon"><img src="@x.Icon" alt="icon01"></div>
+                                    <h4 style="text-shadow:0 2px 6px rgba(0,0,0,0.5)"><a href="#">@x.Title</a></h4>
+                                    <p>@x.Description</p>
+                                    <a class="link" href="#"><i class="fal fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row align-items-center">
+
+            <div class="col-md-12 text-center">
+                <div class="text-bg" data-aos="fade-up" data-aos-duration="1000">
+                    <h2>İstatistiklerimiz</h2>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>

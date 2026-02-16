@@ -1,0 +1,44 @@
+﻿@model PolicyStatusChartViewModel
+
+<div class="col-12 col-lg-4 col-xl-4 d-flex" >
+    <div class="card w-100 rounded-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <h6 class="mb-0">Poliçe Durum Dağılımı</h6>
+            </div>
+            <div id="policyChart"></div>
+        </div>
+
+        <ul class="list-group list-group-flush mb-0 shadow-none">
+            <li class="list-group-item bg-transparent border-top">
+                <i class="bi bi-circle-fill me-2 text-success"></i>
+                Aktif
+                <span class="float-end">@Model.ActiveCount</span>
+            </li>
+            <li class="list-group-item bg-transparent">
+                <i class="bi bi-circle-fill me-2 text-danger"></i>
+                Süresi Doldu
+                <span class="float-end">@Model.ExpiredCount</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    var options = {
+        chart: {
+            type: 'donut',
+            height: 250
+        },
+        series: [@Model.ActiveCount, @Model.ExpiredCount],
+        labels: ['Aktif', 'Süresi Doldu'],
+        colors: ['#28a745', '#dc3545'],
+        legend: {
+            position: 'bottom'
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#policyChart"), options);
+    chart.render();
+</script>

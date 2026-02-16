@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "CreateTestimonialWithClaudeAI";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var testimonials = ViewBag.testimonials as List<string>;
+}
+
+
+<div class="container-fluid px-4">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0 bg-dark text-white">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="mb-1 fw-bold"><i class="bi bi-chat-quote me-2 text-warning"></i>AI Testimonial Oluşturucu</h4>
+                            <p class="text-light-50 mb-0">Claude AI tarafından üretilen kurumsal müşteri deneyimleri.</p>
+                        </div>
+                        <a href="@Url.Action("CreateTestimonialWithClaudeAI")" class="btn btn-warning px-4 rounded-pill fw-bold">
+                            <i class="bi bi-magic me-1"></i> Yeniden Oluştur
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 g-4">
+        @if (testimonials != null && testimonials.Any())
+        {
+            foreach (var item in testimonials)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card testimonial-card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <p class="testimonial-text">
+                                “@item”
+                            </p>
+
+                            <div class="mt-auto pt-3 d-flex align-items-center">
+                                <div class="avatar me-3">
+                                    <span>👤</span>
+                                </div>
+                                <div>
+                                    <strong>Müşteri</strong><br />
+                                    <small class="text-muted">Doğrulanmış Yorum</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-danger border-0 shadow-sm">
+                    <i class="bi bi-exclamation-octagon me-2"></i>
+                    <strong>Hata:</strong> @(testimonials?[0] ?? "İçerik yüklenemedi.")
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .testimonial-card {
+        transition: all 0.3s ease;
+    }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+
+    .text-light-50 {
+        color: rgba(255,255,255,0.7);
+    }
+</style>
+
+<script>
+    function copyTestimonial(btn) {
+        const text = btn.closest('.card').querySelector('.card-text').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-lg"></i> Kopyalandı!';
+            btn.classList.replace('btn-outline-secondary', 'btn-success');
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.replace('btn-success', 'btn-outline-secondary');
+            }, 2000);
+        });
+    }
+</script>
+

@@ -1,0 +1,78 @@
+﻿@model List<PricingPlanItem>
+<section id="pricing" class="pricing-area pt-70 pb-60 fix p-relative">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="section-title center-align pr-60" data-aos="fade-up" data-aos-duration="1000">
+                    <h2>
+                        @ViewBag.title
+                    </h2>
+                    <p class="pt-30" data-aos="fade-up" data-aos-duration="1200">@ViewBag.description1</p>
+                    <p data-aos="fade-up" data-aos-duration="1400">@ViewBag.description2</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="pricing-box pricing-box2 mb-60" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="pricing-head">
+                                <h3>@ViewBag.plan1name</h3>
+                                <div class="price-count">
+                                    <h2>@ViewBag.plan1price ₺ <strong> / Ay</strong></h2>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="pricing-body mt-20 mb-30 text-left">
+                                <ul>
+                                    @foreach (var x in Model)
+                                    {
+                                        @if (x.PricingPlanId == ViewBag.plan1Id)
+                                        {
+                                            <li>@x.Title</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+
+                            <div class="pricing-btn">
+                                <a href="#contact" class="btn ss-btn">Bilgi Alın</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="pricing-box pricing-box2 active mb-60" data-aos="fade-left" data-aos-duration="1400">
+                            <div class="pricing-head">
+                                <h3>@ViewBag.plan2name</h3>
+                                <div class="price-count">
+                                    <h2>@ViewBag.plan2price ₺ <strong> / Ay</strong></h2>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="pricing-body mt-20 mb-30 text-left">
+                                <ul>
+                                    @foreach (var x in Model)
+                                    {
+                                        @if (x.PricingPlanId == ViewBag.plan2Id)
+                                        {
+                                            <li>@x.Title</li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+
+                            <div class="pricing-btn">
+                                <a href="#contact" class="btn ss-btn">Bilgi Alın</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,37 @@
+﻿@using YapayZekaSigorta.Services
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Poliçe Satış Tahminleri</h5>
+        </div>
+        <div class="table-responsive mt-3">
+            <table class="table align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Gelecek Ay</th>
+                        <th>Tahmin</th>
+                        <th>Minimum</th>
+                        <th>Maksimum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ((PolicySalesForecast)ViewBag.forecast).ForecastedValues.Length; i++)
+                    {
+                        <tr>
+                            <td>@($"Ay {i+1}")</td>
+                            <td>@(Math.Max(0, ((PolicySalesForecast)ViewBag.forecast).ForecastedValues[i]).ToString("0.##"))</td>
+                            <td>@(Math.Max(0, ((PolicySalesForecast)ViewBag.forecast).LowerBoundValues[i]).ToString("0.##"))</td>
+                            <td>@(Math.Max(0, ((PolicySalesForecast)ViewBag.forecast).UpperBoundValues[i]).ToString("0.##"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

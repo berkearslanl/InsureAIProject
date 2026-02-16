@@ -1,0 +1,41 @@
+﻿@model PricingPlan
+@{
+    ViewData["Title"] = "UpdatePricingPlan";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Ödeme Planlarını Güncelleme Sayfası</h5>
+        </div>
+        <form method="post">
+            <br>
+            <input type="hidden" asp-for="PricingPlanId" />
+            <label class="form-label">Başlık</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Title" />
+            <br />
+            <label class="form-label">Açıklama 1</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Description1" />
+            <br />
+            <label class="form-label">Açıklama 2</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Description2" />
+            <br />
+            <label class="form-label">Plan Adı</label>
+            <br />
+            <input type="text" class="form-control" asp-for="PlanName" />
+            <br />
+            <label class="form-label">Fiyat</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Price" />
+            <br />
+            <input class="form-check-input" type="checkbox" role="switch" id="switchFeature" asp-for="IsFeature">
+            <label class="form-check-label" for="switchFeature">Öne Çıkanlarda Göster</label>
+            <br /><br />
+            <button class="btn btn-outline-primary">Planı Kaydet</button>
+        </form>
+    </div>
+</div>

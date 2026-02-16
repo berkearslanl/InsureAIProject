@@ -1,0 +1,33 @@
+﻿<div class="posts_navigation pt-35 pb-35">
+    <div class="row align-items-center text-center text-md-start">
+        <!-- Önceki Post -->
+        <div class="col-xl-4 col-md-5 mb-4 mb-md-0">
+            <div>
+                <span style="display:block;color:#8b8b8b;font-size:16px;">Önceki Post</span>
+                <h4 style="font-weight:700;font-size:24px;">
+                    <a href="/Blog/BlogDetail/@ViewBag.prevArticleid" style="text-decoration:none;color:#001f3f;">@ViewBag.prevArticle</a>
+                </h4>
+            </div>
+        </div>
+
+        <!-- Orta Görsel -->
+        <div class="col-xl-4 col-md-2 text-center">
+            <a href="blog.html" style="display:inline-flex;justify-content:center;align-items:center;">
+                <img src="/defaultimages/insurance-shield.png"
+                     alt="Sigorta"
+                     style="width:90px;height:90px;border-radius:50%;background-color:#e6f3ff;padding:15px;">
+            </a>
+        </div>
+
+        <!-- Sonraki Post -->
+        <div class="col-xl-4 col-md-5">
+            <div style="text-align:right;">
+                <span style="display:block;color:#8b8b8b;font-size:16px;">Sonraki Post</span>
+                <h4 style="font-weight:700;font-size:24px;">
+                    <a href="/Blog/BlogDetail/@ViewBag.nextArticleid" style="text-decoration:none;color:#001f3f;">@ViewBag.nextArticle</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />

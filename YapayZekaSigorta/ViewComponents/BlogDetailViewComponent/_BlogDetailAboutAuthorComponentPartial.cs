@@ -1,0 +1,22 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using YapayZekaSigorta.Context;
+
+namespace YapayZekaSigorta.ViewComponents.BlogDetailViewComponent
+{
+    public class _BlogDetailAboutAuthorComponentPartial:ViewComponent
+    {
+        private readonly InsureContext _context;
+
+        public _BlogDetailAboutAuthorComponentPartial(InsureContext context)
+        {
+            _context = context;
+        }
+
+        public IViewComponentResult Invoke(int id)
+        {
+            string appUserId = _context.Articles.Where(x => x.ArticleId == id).Select(x => x.AppUserId).FirstOrDefault();
+            var userValue = _context.Users.Where(x => x.Id == appUserId).FirstOrDefault();
+            return View(userValue);
+        }
+    }
+}

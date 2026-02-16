@@ -1,0 +1,43 @@
+﻿@model AppUser
+<style>
+    .avatar-img img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        /* 'cover' yerine 'contain' kullanarak resmin tamamını kutuya sığdırıyoruz */
+        object-fit: contain;
+        /* Eğer resim şeffafsa, arkasına beyaz bir renk vererek daha dolgun görünmesini sağlarız */
+        background-color: #fff;
+        border: 3px solid #ddd;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        /* Resmin kenarlara çok yapışmaması için opsiyonel padding */
+        padding: 5px;
+    }
+
+    .avatar-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 15px auto;
+    }
+</style>
+<div class="avatar__wrap text-center mb-45">
+    <div class="avatar-img">
+        <img src="@Model.ImageUrl" alt="">
+    </div>
+    <div class="avatar__info">
+        <h5>@Model.Name @Model.Surname</h5>
+        <div class="avatar__info-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+    <div class="avatar__wrap-content">
+        <p>
+            @Model.Description
+        </p>
+    </div>
+</div>

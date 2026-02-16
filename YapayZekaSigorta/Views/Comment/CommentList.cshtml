@@ -1,0 +1,46 @@
+﻿@model List<Comment>
+@{
+    ViewData["Title"] = "CommentList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Sigorta Makaleleri Kullanıcı Yorumları</h5>
+            <form class="ms-auto position-relative">
+                <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
+                <input class="form-control ps-5" type="text" placeholder="search">
+            </form>
+        </div>
+        <div class="table-responsive mt-3">
+            <table class="table align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>Makale</th>
+                        <th>Yorum</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th>Onayla</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model)
+                    {
+                        <tr>
+                            <td>@x.AppUser.Name @x.AppUser.Surname</td>
+                            <td style="white-space:normal; word-break:break-word;max-width:300px">@x.Article.Title</td>
+                            <td style="white-space:normal; word-break:break-word;max-width:300px">@x.CommentDetail</td>
+                            <td>@x.CommentDate.ToString("dd MMM yyyy")</td>
+                            <td>@x.CommentStatus</td>
+                            <td><a href="/Comment/ConfirmComment/@x.CommentId" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Onayla"><i class="bi-check-circle-fill"></i></a></td>
+                            <td><a href="/Comment/DeleteComment/@x.CommentId" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil"><i class="bi bi-trash-fill"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

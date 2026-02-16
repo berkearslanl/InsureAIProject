@@ -1,0 +1,120 @@
+﻿<div class="row row-cols-1 row-cols-lg-3 row-cols-xl-3">
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0">@ViewBag.messageCount</h4>
+                        <p class="mb-1">Mesaj sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-purple">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 5px;">
+                    <div class="progress-bar bg-purple" role="progressbar" style="width: 42%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0">@ViewBag.avgPolicyAmount ₺</h4>
+                        <p class="mb-1">Ortalama Poliçe Tutarı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-success">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 5px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 42%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card rounded-4">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0">@ViewBag.lastRevenueAmount ₺</h4>
+                        <p class="mb-1">Son Gider Miktarı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-danger">
+                        <i class="bi bi-graph-down-arrow"></i>
+                    </div>
+                </div>
+                <div class="progress mt-3" style="height: 5px;">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 42%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end row-->
+
+
+<div class="row row-cols-1 row-cols-lg-4 row-cols-xl-4">
+    <div class="col">
+        <div class="card rounded-4 bg-purple">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.totalPolicyThisMonth</h4>
+                        <p class="mb-1 text-white">Bu Ayki Poliçe Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card rounded-4 bg-primary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.testimonialCount</h4>
+                        <p class="mb-1 text-white">Referans Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card rounded-4 bg-orange">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.serviceCount</h4>
+                        <p class="mb-1 text-white">Servis Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-gear-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card rounded-4 bg-success">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="">
+                        <h4 class="mb-0 text-white">@ViewBag.subscribeCount</h4>
+                        <p class="mb-1 text-white">Abone Sayısı</p>
+                    </div>
+                    <div class="ms-auto fs-3 text-white">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end row-->

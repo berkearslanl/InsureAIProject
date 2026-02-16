@@ -1,0 +1,55 @@
+﻿@using System.Text.RegularExpressions
+@model List<Article>
+
+<div class="col-lg-8">
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            Bu kategoriye ait bir blog yazısı bulunamadı.
+        </div>
+    }
+    else
+    {
+        @foreach (var x in Model)
+        {
+            <div class="bsingle__post mb-50">
+                <div class="bsingle__post-thumb">
+                    <img src="@x.CoverImageUrl" alt="" style="height:500px">
+                </div>
+                <div class="bsingle__content">
+                    <div class="meta-info">
+                        <ul>
+                            <li><i class="fal fa-user"></i>@x.AppUser.Name @x.AppUser.Surname</li>
+                            <li><i class="fal fa-calendar-alt"></i> @x.CreatedDate.ToString("dd MMM yyyy")</li>
+                            <li><i class="fal fa-folder"></i> @x.Category.CategoryName</li>
+                            <li><i class="fal fa-comment"></i> 0 Yorum</li>
+                        </ul>
+                    </div>
+                    <h2>
+                        <a href="/Blog/BlogDetail/@x.ArticleId">
+                            @x.Title
+                        </a>
+                    </h2>
+
+                    @if (x.Content.Length > 300)
+                    {
+                        var plainText = Regex.Replace(x.Content, "<.*?>", "");
+                        var summary = plainText.Length > 300
+                        ? plainText.Substring(0, 300) + "..."
+                        : plainText;
+                        <p>@Html.Raw(summary)</p>
+                    }
+                    else
+                    {
+                        <p>@Html.Raw(x.Content)</p>
+                    }
+
+                    <div class="blog__btn">
+                        <a href="/Blog/BlogDetail/@x.ArticleId" class="btn">Devamını Oku</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

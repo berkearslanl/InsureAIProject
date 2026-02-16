@@ -1,0 +1,69 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "AddArticle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Yeni Makale Oluşturma Sayfası</h5>
+        </div>
+        <form method="post">
+            <br>
+            <label class="form-label">Başlık</label>
+            <br />
+            <input type="text" class="form-control" asp-for="Title" />
+            <br />
+            <label class="form-label">Kapak Fotoğraf Yolu</label>
+            <br />
+            <input type="text" class="form-control" asp-for="CoverImageUrl" />
+            <br />
+            <label class="form-label">Makale Detay Kapak Görseli </label>
+            <br />
+            <input type="text" class="form-control" asp-for="MainCoverImageUrl" />
+            <br />
+            <label class="form-label">Kategori</label>
+            <br />
+            <select class="form-select" asp-for="CategoryId" asp-items="ViewBag.Categories" name="CategoryId">
+                <option value="">Kategori Seçiniz</option>
+            </select>
+            <br />
+            <label class="form-label">Yazar</label>
+            <br />
+            <select class="form-select" asp-for="AppUserId" asp-items="ViewBag.Author" name="AppUserId">
+                <option value="">Yazar Seçiniz</option>
+            </select>
+            <br />
+            <label class="form-label">Makale İçeriği</label>
+            <br />
+            <textarea id="Content" name="Content" class="form-control" rows="15"></textarea>
+            <br />
+            <button class="btn btn-outline-primary">Makaleyi Oluştur</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/4.20.1/standard-all/ckeditor.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("Content")) {
+            CKEDITOR.replace("Content", {
+                height: 400,
+                extraPlugins: 'colorbutton,font', // 🔥 renk ve font eklentilerini etkinleştir
+                toolbar: [
+                    { name: 'document', items: ['Source', '-', 'Preview'] },
+                    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'] },
+                    { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] }, // 🎨 renk butonları
+                    { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+                    { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'] },
+                    { name: 'insert', items: ['Image', 'Table', 'Link', 'Unlink'] },
+                    { name: 'tools', items: ['Maximize'] }
+                ]
+            });
+        }
+    });
+</script>

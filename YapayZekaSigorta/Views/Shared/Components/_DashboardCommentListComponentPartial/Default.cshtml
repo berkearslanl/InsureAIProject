@@ -1,0 +1,42 @@
+﻿@model List<Comment>
+
+<div class="col-12 col-lg-6 col-xl-6 d-flex">
+    <div class="card rounded-4 w-100">
+        <div class="card-header bg-transparent">
+            <div class="d-flex align-items-center">
+                <h6 class="mb-0">Müşteri Yorumları</h6>
+                <div class="fs-5 ms-auto dropdown">
+                    <a href="/Comment/CommentList/" class="btn btn-outline-dark">Tüm Yorumları Gör</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="review-list">
+                @foreach (var x in Model)
+                {
+                    <div class="d-flex align-items-start">
+                        <div class="review-user">
+                            <img src="@x.AppUser.ImageUrl" width="65" height="65" class="rounded-circle" alt="">
+                        </div>
+                        <div class="review-content ms-3 w-100">
+                            <div class="rates cursor-pointer fs-6">
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <h6 class="mb-0">@x.AppUser.Name @x.AppUser.Surname</h6>
+                                <p class="mb-0 ms-auto">@x.CommentDate.ToString("dd MMM yyyy")</p>
+                            </div>
+                            <p>@x.CommentDetail</p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

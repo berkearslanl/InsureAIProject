@@ -1,0 +1,64 @@
+﻿@model List<PolicyGroupViewModel>
+@{
+    int total = ViewBag.totalPolicyCount;
+}
+
+@functions {
+    string GetEmoji(string policyType)
+    {
+        return policyType switch
+        {
+            "Saglik Sigortasi" => "🩺",
+            "Yurt Disi Seyahat Sigortasi" => "✈️",
+            "Kasko Sigortasi" => "🚘",
+            "Trafik Sigortasi" => "🚗",
+            "Konut Sigortasi" => "🏠",
+            "DASK(Zorunlu Deprem Sigortasi)" => "🏢",
+            "Hayat Sigortasi" => "❤️",
+            "Isyeri Sigortasi" => "🏬",
+            "Egitim Sigortasi" => "🎓",
+            "Evcil Hayvan Sigortasi" => "🐾"
+
+
+        };
+    }
+}
+<div class="col-12 col-lg-6 col-xl-6 d-flex">
+    <div class="card rounded-4 w-100">
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <h6 class="mb-0">En Çok Satılan Poliçeler</h6>
+            </div>
+            <div class="">
+                @foreach (var x in Model)
+                {
+                    var percentage = total > 0 ? (x.Count * 100 / total) : 0;
+
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="product-box border d-flex justify-content-center align-items-center" style="width:45px;height:45px;border-radius:10px;font-size:24px;">
+                            @GetEmoji(x.PolicyType)
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="progress-wrapper">
+                                <p class="my-2">
+
+                                    @x.PolicyType
+                                    <span class="float-end">
+                                        (@x.Count Satış)
+                                        <span class="ms-3 fw-bold">
+                                            @percentage%
+                                        </span>
+                                    </span>
+                                </p>
+                                <div class="progress" style="height: 4px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: @percentage%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+            </div>
+        </div>
+    </div>
+</div>

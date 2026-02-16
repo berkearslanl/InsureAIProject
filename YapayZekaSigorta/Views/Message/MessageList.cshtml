@@ -1,0 +1,187 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "MessageList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+<div class="card shadow-sm rounded-4">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+            <h5 class="mb-0 fw-bold">📥 Gelen Mesaj Listesi</h5>
+
+            <form class="ms-auto position-relative">
+                <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+                    <i class="bi bi-search"></i>
+                </div>
+                <input class="form-control ps-5 rounded-pill" type="text" placeholder="Aranacak kelimeler...">
+            </form>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Ad Soyad</th>
+                        <th>Konu</th>
+                        <th>Tarih</th>
+                        <th>AI Kategori</th>
+                        <th>Öncelik</th>
+                        <th>Durum</th>
+                        <th>Mesajı Aç</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+
+                        <tr>
+                            <td>@count</td>
+
+                            <td class="fw-semibold">@item.NameSurname</td>
+
+                            <td>@item.Subject</td>
+
+                            <td>@item.SendDate.ToString("dd MMM yyyy")</td>
+
+                            <!-- AI CATEGORY BADGE -->
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.AICategory))
+                                {
+                                    <span class="badge bg-info text-dark px-3 py-2 rounded-pill">
+                                        <i class="bi bi-stars me-1"></i> @item.AICategory
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Bekleniyor</span>
+                                }
+                            </td>
+
+                            <!-- PRIORITY BADGE -->
+                            <td>
+                                @switch (item.Priority)
+                                {
+                                    case "High":
+                                        <span class="badge bg-danger px-3 py-2 rounded-pill">
+                                            🔥 Yüksek
+                                        </span>
+                                        break;
+
+                                    case "Medium":
+                                        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">
+                                            ⚠️ Orta
+                                        </span>
+                                        break;
+                                    case "Low":
+                                        <span class="badge bg-success px-3 py-2 rounded-pill">
+                                            🟢 Düşük
+                                        </span>
+                                        break;
+                                    default:
+                                        <span class="badge bg-secondary px-3 py-2 rounded-pill">
+                                            ❓Belirlenemedi
+                                        </span>
+                                        break;
+                                }
+                            </td>
+
+                            <!-- OKUNMA DURUMU -->
+                            <td>
+                                @if (item.IsRead)
+                                {
+                                    <span class="badge bg-success">Okundu</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Okunmadı</span>
+                                }
+                            </td>
+
+                            <!-- Mesaj Aç -->
+                            <td>
+                                <a href="javascript:;" class="text-primary open-message-modal" data-bs-toggle="modal" data-bs-target="#messageModal" data-name="@item.Email" data-id="@item.MessageId" data-detail="@item.MessageDetail" data-aianswer="@item.AIAnswer" title="Mesajı Aç">
+                                    <i class="bi bi-eye-fill fs-5"></i>
+                                </a>
+                            </td>
+
+                            <!-- Sil -->
+                            <td>
+                                <a href="/Message/DeleteMessage/@item.MessageId" class="text-danger" data-bs-toggle="tooltip" title="Sil">
+                                    <i class="bi bi-trash-fill fs-5"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mesaj Detayı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6><strong>Gönderen:</strong> <span id="modalName"></span></h6>
+                <hr>
+                <p><strong>Mesaj:</strong></p>
+                <div class="p-3 bg-light border rounded mb-3" id="modalDetail"></div>
+
+                <p><strong>AI Cevabı:</strong></p>
+                <div class="p-3 border rounded text-white bg-dark" id="modalAIAnswer"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const messageLinks = document.querySelectorAll('.open-message-modal');
+
+        messageLinks.forEach(link => {
+            link.addEventListener('click', function () {
+
+                const messageId = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const detail = this.getAttribute('data-detail');
+                const aiAnswer = this.getAttribute('data-aianswer');
+
+                document.getElementById('modalName').innerText = name;
+                document.getElementById('modalDetail').innerText = detail;
+                document.getElementById('modalAIAnswer').innerText = aiAnswer ||
+                    "Henüz bir AI cevabı oluşturulmamış.";
+
+                // AJAX ile okundu yap
+                    fetch('/Message/MarkAsRead?id=' + messageId, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const row = this.closest('tr');
+            const statusCell = row.querySelector('td:nth-child(7)');
+            statusCell.innerHTML =
+                '<span class="badge bg-success">Okundu</span>';
+        }
+    });
+            });
+        });
+    });
+</script>

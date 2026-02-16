@@ -1,0 +1,57 @@
+﻿@model List<Gallery>
+<style>
+    .gallery-img-fixed {
+        width: 100%; /* Kolon genişliğine tam yayılması için */
+        height: 300px; /* Tüm resimler için sabit bir yükseklik (değiştirebilirsin) */
+        object-fit: cover; /* Resmin en-boy oranını koruyarak kutuyu doldurur */
+        object-position: center; /* Resmi merkeze odaklar */
+        border-radius: 8px; /* Köşeleri hafif yuvarlatmak istersen (isteğe bağlı) */
+        display: block;
+    }
+
+    /* Hover efektinde resmin hafif büyümesini istersen (opsiyonel) */
+    .gallery-image:hover .gallery-img-fixed {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-image {
+        overflow: hidden; /* Taşan kısımları gizle (büyüme efekti için şart) */
+    }
+</style>
+<section class="gallery-area fix" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container-fluid">
+        <div class="row portfolio-active">
+            @foreach (var x in Model)
+            {
+                <div class="col-lg-4 col-md-12 mb-30">
+                    <a href="@x.ImageUrl" class="popup-link">
+                        <figure class="gallery-image">
+                            <img src="@x.ImageUrl" alt="img" class="img gallery-img-fixed">
+                            <figcaption>
+                                <h4>@x.Title</h4>
+                                <span>Insure You AI</span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.portfolio-active').magnificPopup({
+            delegate: '.popup-link', // Tıklanacak eleman
+            type: 'image',
+            gallery: {
+                enabled: true // Resimler arasında sağ/sol okları ile geçiş yapmayı sağlar
+            },
+            mainClass: 'mfp-fade' // Açılış efekti
+        });
+    });
+</script>

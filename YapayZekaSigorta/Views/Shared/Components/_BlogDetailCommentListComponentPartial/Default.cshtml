@@ -1,0 +1,35 @@
+﻿@model List<Comment>
+<div class="comment__wrap pb-45">
+    <div class="comment__wrap-title">
+        <h5>Yorumlar (@Model.Count)</h5>
+    </div>
+    @if (Model!=null && Model.Count>0)
+    {
+        foreach (var x in Model)
+        {
+            <div class="single__comment mb-35">
+                <div class="comments-avatar">
+                    <img src="@x.AppUser.ImageUrl" alt="">
+                </div>
+                <div class="comment-text">
+                    <div class="avatar-name mb-15">
+                        <h6>@x.AppUser.Name @x.AppUser.Surname</h6>
+                        <span>@x.CommentDate.ToString("dd MMM yyyy")</span>
+                    </div>
+                    <p>@x.CommentDetail</p>
+                </div>
+            </div>
+            <br /><br />
+        }
+    }
+    else
+    {
+        <div class="no-comment-box text-center p-5 mb-35" style="background: #f8f9fa; border-radius: 10px; border: 1px dashed #dee2e6;">
+            <div class="icon mb-3">
+                <i class="far fa-comments fa-3x" style="color: #6c757d; opacity: 0.5;"></i>
+            </div>
+            <h6 style="color: #6c757d; font-weight: 500;">Henüz yorum yapılmamış.</h6>
+            <p style="font-size: 14px; color: #adb5bd;">İlk yorumu yapan siz olmak ister misiniz?</p>
+        </div>
+    }
+</div>

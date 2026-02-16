@@ -1,0 +1,28 @@
+﻿@model List<TrailerVideo >
+@foreach (var x in Model)
+{
+
+
+    <section id="video" class="video-area p-relative" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="s-video-wrap" style="background-image:url(@x.CoverImageUrl)">
+                        <div class="s-video-content text-center">
+                            <h2>@x.Title</h2>
+                            <h6>
+                                <a href="@x.VideoUrl" class="popup-video mb-50"><img src="/defaultimages/play-button.png" alt="circle_right"></a><br>
+                                Tanıtım Videomuzu İzleyin
+                            </h6>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}
+@*https://www.youtube.com/watch?v=7e90gBu4pas
+    img/bg/video-img.png
+*@

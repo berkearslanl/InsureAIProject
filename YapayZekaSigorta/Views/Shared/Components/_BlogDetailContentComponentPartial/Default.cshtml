@@ -1,0 +1,33 @@
+﻿@model Article
+<div class="details__content pb-30">
+
+    <h2>
+        @Model.Title
+    </h2>
+    <div class="meta-info">
+        <ul>
+            <li><i class="fal fa-eye"></i> @Model.AppUser?.Name @Model?.AppUser?.Surname</li>
+            <li><i class="fal fa-comments"></i>@ViewBag.commentcount Yorum</li>
+            <li><i class="fal fa-calendar-alt"></i> @Model.Category?.CategoryName</li>
+            <li><i class="fal fa-calendar-alt"></i> @Model.CreatedDate.ToString("dd MMM yyyy")</li>
+        </ul>
+    </div>
+    <div class="details__content-img">
+        <img src="@Model.MainCoverImageUrl" alt="">
+    </div>
+    <p>@Html.Raw(Model.Content)</p>
+
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="post__tag">
+                <h5>İlgili Etiketler</h5>
+                <ul>
+                    <li><a href="#">Trafik</a></li>
+                    <li><a href="#">Kasko</a></li>
+                    <li><a href="#">Sağlık</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

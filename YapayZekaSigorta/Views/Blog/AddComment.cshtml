@@ -1,0 +1,27 @@
+﻿<div id="comments" class="comments-area  mt-45">
+    <div id="respond" class="comment-respond">
+        <h3 id="reply-title" class="comment-reply-title">Bir Yorum Yapın</h3>
+        <form asp-action="AddComment" asp-controller="Blog" method="post" id="commentform" class="comment-form" novalidate="">
+            <p class="comment-form-comment"><label for="comment">Yorumunuz</label> <textarea id="comment" name="CommentDetail" cols="45" rows="8" maxlength="65525" required="required" placeholder="Yorumunuzu giriniz."></textarea></p>
+            <div id="loading-message" style="display:none; color: #555; margin-bottom: 10px;">
+                <i class="fa fa-spinner fa-spin"></i> Yorumunuz analiz ediliyor ve gönderiliyor, lütfen bekleyin...
+            </div>
+            <p class="form-submit">
+                <input type="hidden" name="ArticleId" value="@TempData["id"]" />
+                <input name="submit" type="submit" id="submit" class="submit" value="Yorum Yap">
+            </p>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+        document.getElementById("commentform").addEventListener("submit", function(e) {
+        var submitButton = document.getElementById("submit");
+        var loadingMessage = document.getElementById("loading-message");
+
+        submitButton.disabled = true;
+        submitButton.value = "Gönderiliyor...";
+
+        loadingMessage.style.display = "block";
+    });
+</script>
