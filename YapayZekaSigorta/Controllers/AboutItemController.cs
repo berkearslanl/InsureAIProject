@@ -56,7 +56,7 @@ namespace YapayZekaSigorta.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateAboutItemWithGemini()
         {
-            var apikey = "AIzaSyDbr8mUmS8Pndqj2GDmpYtZ7ZmXlCqdeGo";
+            var apikey = "apikey";
             var model = "gemini-2.5-flash";
             ViewBag.model = model;
             var url = $"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent?key={apikey}";

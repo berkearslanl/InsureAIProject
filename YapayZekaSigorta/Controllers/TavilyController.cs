@@ -10,8 +10,8 @@ namespace YapayZekaSigorta.Controllers
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        private readonly string tavilyApiKey = "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";
-        private readonly string openAIApiKey = "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";
+        private readonly string tavilyApiKey = "apikey";
+        private readonly string openAIApiKey = "apikey";
 
 
         public TavilyController(IHttpClientFactory httpClientFactory)

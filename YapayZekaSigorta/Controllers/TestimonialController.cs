@@ -56,7 +56,7 @@ namespace YapayZekaSigorta.Controllers
 
         public async Task<IActionResult> CreateTestimonialWithClaudeAI()
         {
-            string apikey = "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";
+            string apikey = "apikey";
 
             string prompt = "Bir sigorta şirketi için Türkçe müşteri yorumları üret.Toplam 6 adet testimonial oluştur. Kurallar:Başlık yazma. Numara (1., 2., 3. gibi) kullanma. Listeleme yapma. Müşteri Yorumları gibi ifadeler kullanma. Her testimonial tek satır olsun.Format şu şekilde OLMALI:Yorum metni - Ad Soyad, Unvan. Sadece bu formatta 6 satır üret, başka hiçbir açıklama yazma.";
 

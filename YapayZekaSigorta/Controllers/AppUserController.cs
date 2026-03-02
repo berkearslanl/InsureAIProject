@@ -63,7 +63,7 @@ namespace YapayZekaSigorta.Controllers
             //makaleleri tek bir metinde toplayalım
             var allArticles = string.Join("\n\n", articles);
 
-            var apiKey = "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";
+            var apiKey = "apikey";
 
             //promptun yazılması
             var prompt = $@"
@@ -166,7 +166,7 @@ Lütfen çıktıyı profesyonel rapor formatında, madde madde ve en sonda 5 mad
             //makaleleri tek bir metinde toplayalım
             var allComments = string.Join("\n\n", comments);
 
-            var apiKey = "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";
+            var apiKey = "apikey";
 
             //promptun yazılması
             var prompt = $@"

@@ -56,7 +56,7 @@ namespace YapayZekaSigorta.Controllers
 
             using (var client = new HttpClient())
             {
-                var apiKey = "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";
+                var apiKey = "apikey";
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
                 try

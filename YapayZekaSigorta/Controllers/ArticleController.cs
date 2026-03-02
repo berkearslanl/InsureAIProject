@@ -110,7 +110,7 @@ namespace YapayZekaSigorta.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateArticleWithOpenAI(string prompt)
         {
-            var apikey = "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";
+            var apikey = "apikey";
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);

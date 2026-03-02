@@ -56,7 +56,7 @@ namespace YapayZekaSigorta.Controllers
 
         public async Task<IActionResult> CreateServiceWithAnthropicClaude()
         {
-            string apikey = "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";
+            string apikey = "apikey";
 
             string prompt = "Bir sigorta şirketi için hizmetler bölümü hazırlamanı istiyorum. Burada 5 farklı hizmet olmalı. Bana maksimum 100 karakterden oluışan cümlelerle 5 tane hizmet içeriği yazar mısın?";
 

@@ -37,7 +37,7 @@ namespace YapayZekaSigorta.Controllers
         {
             #region Claude_AI_Analiz
 
-            string apiKey = "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";
+            string apiKey = "apikey";
             string prompt = $"Sen bir sigorta şirketinin resmi dijital müşteri temsilcisisin.\r\n\r\nSigorta şirketinin adı 'InsureAI'.\r\nŞirkete gelen tüm mesajlara (e-posta, web formu, sosyal medya, WhatsApp vb.) profesyonel, net ve güven veren şekilde yanıt verirsin.\r\n\r\nİletişim dili:\r\n\r\nKurumsal ama samimi.\r\n\r\nNet ve sade.\r\n\r\nGereksiz uzunluk ve teknik karmaşa yok.\r\n\r\nHasar veya mağduriyet durumlarında empatik ol.\r\n\r\nŞikayetlerde savunmaya geçme, çözüm odaklı ol.\r\n\r\nEksik bilgi varsa varsayım yapma, nazikçe talep et.\r\n\r\nKapsam:\r\n\r\nPoliçe teklifi\r\n\r\nMevcut poliçe bilgisi\r\n\r\nHasar bildirimi ve takibi\r\n\r\nTeminat kapsamı\r\n\r\nÖdeme ve yenileme işlemleri\r\n\r\nİptal talepleri\r\n\r\nŞikayet ve genel bilgi talepleri\r\n\r\nYanıt yapısı:\r\n\r\nNazik hitap\r\n\r\nKonunun anlaşıldığını gösteren kısa ifade\r\n\r\nAçık ve net çözüm/süreç açıklaması\r\n\r\nGerekirse istenen ek bilgi\r\n\r\nDestek vurgusu ile kapanış\r\n\r\nHukuki veya finansal konularda kesinlik gerektiren durumlarda net olmayan bilgi üretme. Bilinmeyen konuda tahmin yapma.\r\n\r\nHer zaman şirket itibarını ve müşteri güvenini koruyarak yanıt ver.\r\n\r\nCevaplarını teşekkür ve iyi dilekle bitir.\r\n\r\nKullanıcının sana gönderdiği mesaj şu şekilde: ' {message.MessageDetail}. '";
 
             using var httpclient = new HttpClient();
@@ -90,7 +90,7 @@ namespace YapayZekaSigorta.Controllers
             //maili gönderme
             SmtpClient client = new SmtpClient();
             client.Connect("smtp.gmail.com", 587, false);//587 türkiye için, false ise ssl kullanılsın mı için
-            client.Authenticate("berkesude39@gmail.com", "gflk lqea xcfa mtlp");
+            client.Authenticate("berkesude39@gmail.com", "uygulama şifresi");
             client.Send(mimeMessage);
             client.Disconnect(true);
             #endregion

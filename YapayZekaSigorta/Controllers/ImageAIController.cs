@@ -22,7 +22,7 @@ namespace YapayZekaSigorta.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateImageWithOpenAI(string prompt)
         {
-            var apikey = "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";
+            var apikey = "apikey";
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
 

@@ -74,7 +74,7 @@ namespace YapayZekaSigorta.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUserCustomizePlan(AIInsuranceRecommendationViewModel model)
         {
-            string apikey = "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";
+            string apikey = "apikey";
             // Kullanıcı girdilerini JSON'a çeviriyoruz
             var userJson = JsonConvert.SerializeObject(model);
 

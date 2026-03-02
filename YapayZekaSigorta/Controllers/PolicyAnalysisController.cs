@@ -7,7 +7,7 @@ namespace YapayZekaSigorta.Controllers
 {
     public class PolicyAnalysisController : Controller
     {
-        private readonly string apikey = "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";
+        private readonly string apikey = "apikey";
         [HttpGet]
         public IActionResult PdfAnalyze()
         {

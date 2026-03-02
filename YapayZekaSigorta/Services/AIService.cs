@@ -5,7 +5,7 @@ namespace YapayZekaSigorta.Services
 {
     public class AIService
     {
-        private readonly string _apiKey = "AIzaSyDbr8mUmS8Pndqj2GDmpYtZ7ZmXlCqdeGo";
+        private readonly string _apiKey = "apikey";
         private readonly string _model = "gemini-2.5-flash";
 
         public async Task<string> PredictCategoryAsync(string messageText)
